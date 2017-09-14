@@ -92,7 +92,7 @@
                          "Protocol" : "HTTP"
                       }
                   ],
-                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"}, { "Ref" ; "SecurityGroupHttpForServersHTTP" } ],
+                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"}, { "Ref" : "SecurityGroupHttpForServersHTTP" } ],
 	    },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
