@@ -79,6 +79,16 @@
                   
              }
          },
+	    
+	 "ELBLB3Z235": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "36dbc337-203f-4bae-abc2-b9aa2592954d"
+                }
+            }
+        },
 		 
         "Instance1": {
             "Type": "AWS::EC2::Instance",
