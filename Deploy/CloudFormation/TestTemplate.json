@@ -71,10 +71,10 @@
             }
         },
 
-        "RouteTablePublic":{
+        "RouteTablePublic" : {
             "Type" : "AWS::EC2::RouteTable",
             "Properties" : {
-                "VpcId" : { "Ref" : "VPCTest" },
+                "VpcId" : { "Ref" : "VPCTest" }
             },
             "Metadata": {
                         "AWS::CloudFormation::Designer": {
