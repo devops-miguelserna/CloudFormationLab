@@ -70,6 +70,27 @@
                   
              }
          },
+	    
+	 "LoadBalancer": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {
+	    	"LoadBalancerName" : "MyELB",
+                  "Listeners" : [ 
+                       {
+                         "InstancePort" : "80",
+                         "InstanceProtocol" : "HTTP",
+                         "LoadBalancerPort" : "80",
+                         "Protocol" : "HTTP"
+                      }
+                  ],
+                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"}, { "Ref" : "SecurityGroupHttpForServersHTTP" } ]
+	    },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "36dbc337-203f-4bae-abc2-b9aa2592954d"
+                }
+            }
+        },
 		 
         "Instance1": {
             "Type": "AWS::EC2::Instance",
