@@ -102,6 +102,14 @@
 
         },
 
+        "SubnetPrivate" : {
+            "Type" : "AWS::EC2::Subnet",
+            "Properties" : {
+                "VpcId" : "VPCTest",
+                "CidrBlock" : "10.0.2.0/24"
+            }
+        },
+
         "SecurityGroupHttpForServersHTTP": {
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
@@ -152,13 +160,37 @@
                 "ImageId" : "ami-d3c022bc",
                 "KeyName" : "default-frankfurt",
                 "InstanceType" : "t2.micro",
+                "SubnetId" : { "Ref" : "SubnetPrivate"},
 				"Tags": [ {"Key" : "Name","Value" : "Ubuntu-HTTP"}   ] ,
                 "SecurityGroupIds" : [{ "Ref" : "SecurityGroupHttpForServersHTTP" }, { "Ref" : "SecurityGroupHttpForServersSSH" }],
+                "PrivateIpAddress" : "10.0.2.3",
 				"UserData" : "IyEvYmluL2Jhc2gNCnl1bSB1cGRhdGUgLXkNCnl1bSBpbnN0YWxsIC15IGh0dHBkMjQgcGhwNTYgbXlzcWw1NS1zZXJ2ZXIgcGhwNTYtbXlzcWxuZA0Kc2VydmljZSBodHRwZCBzdGFydA0KY2hrY29uZmlnIGh0dHBkIG9uDQpzZXJ2aWNlIG15c3FkIHN0YXJ0DQpjaGtjb25maWcgbXlzcWxkIG9uDQpncm91cGFkZCB3d3cNCnVzZXJtb2QgLWEgLUcgd3d3IGVjMi11c2VyDQpjaG93biAtUiByb290Ond3dyAvdmFyL3d3dw0KY2htb2QgMjc3NSAvdmFyL3d3dw0KDQpjZCAvdmFyL3d3dy9odG1sDQp3Z2V0IGh0dHBzOi8vd29yZHByZXNzLm9yZy9sYXRlc3QudGFyLmd6DQp0YXIgeHpmIGxhdGVzdC50YXIuZ3oNCm12IHdvcmRwcmVzcy8qIC4NCnJtIC1yZiBsYXRlc3QudGFyLmd6IHdvcmRwcmVzcw0KDQpteXNxbCAtZSAiY3JlYXRlIGRhdGFiZXNlIHdvcmRwcmVzcyI7DQpteXNxbCAtZSAiZ3JhbnQgYWxsIG9uIHdvcmRwcmVzcy4qIHRvICd3b3JkcHJlc3MnQCdsb2NhbGhvc3QnIGlkZW50aWZpZWQgYnkgJ3dvcmRwcmVzcyciDQoNCmNob3duIC1SIGFwYWNoZTp3d3cgL3Zhci93d3cNCmZpbmQgL3Zhci93d3cgLXR5cGUgZCAtZXhlYyBjaG1vZCAyNzc1IHt9ICsNCmZpbmQgL3Zhci93d3cgLXR5cGUgZiAtZXhlYyBjaG1vZCAwNzc0IHt9ICsNCmVjaG8gIjw/cGhwIHBocGluZm8oKTsgPz4iID4gL3Zhci93d3cvaHRtbC9waHBpbmZvLnBocA=="
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "6239bb8b-60a2-4d44-bb92-10e1b3f9f5bd"
+                }
+            }
+        },
+
+        "LoadBalancer": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {
+                  "LoadBalancerName" : "MyELB",
+                  "Listeners" : [ 
+                       {
+                         "InstancePort" : "80",
+                         "InstanceProtocol" : "HTTP",
+                         "LoadBalancerPort" : "80",
+                         "Protocol" : "HTTP"
+                      }
+                  ],
+                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"} ],
+                  "Subnets" : [ { "Ref" : "SubnetPublic" } ]           
+                   },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "36dbc337-203f-4bae-abc2-b9aa2592954d"
                 }
             }
         }
