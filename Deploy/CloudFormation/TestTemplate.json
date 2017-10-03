@@ -102,10 +102,11 @@
 
         },
 
-        "SubnetPrivate" : {
+        "SubnetPribate": {
             "Type" : "AWS::EC2::Subnet",
-            "Properties" : {
-                "VpcId" : "VPCTest",
+            "Properties": {
+                "VpcId" : { "Ref" : "VPCTest"},
+                "AvailabilityZone" : "eu-central-1b",
                 "CidrBlock" : "10.0.2.0/24"
             }
         },
