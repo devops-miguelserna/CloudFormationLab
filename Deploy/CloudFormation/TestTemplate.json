@@ -239,7 +239,7 @@
                       }
                   ],
                   "SecurityGroups" : [ { "Ref": "SecurityGroupHttpForLoadBalancer"} ],
-                  "Subnets" : [ { "Ref" : "SubnetPublic" } ]           
+                  "Subnets" : [ { "Ref" : "SubnetPublic1" }, { "Ref" : "SubnetPublic2" } ]           
                    },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
