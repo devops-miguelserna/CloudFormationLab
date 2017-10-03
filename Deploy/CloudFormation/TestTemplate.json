@@ -29,21 +29,10 @@
         }
     },
     "Resources": {
-        "EIP1": {
-            "Type": "AWS::EC2::EIP",
-            "Properties": {
-				"InstanceId" : { "Ref" : "Instance1" }
-			},
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "a1f1a409-5753-4ddf-b209-f224b700ed67"
-                }
-            }
-        },
-		
-		"SecurityGroupHttpForServersHTTP": {
+        "SecurityGroupHttpForServersHTTP": {
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
+                  "Tags" : [ {"Key" : "Name", "Value" : "SecurityGroupHttpForServersHTTP"}],
                   "GroupDescription": "Allows Traffic to port 80 from anywhere in the world",
                   "SecurityGroupIngress" : [{
                     "IpProtocol" : "tcp",
@@ -57,6 +46,7 @@
 		 "SecurityGroupHttpForServersSSH": {
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
+                  "Tags" : [ {"Key" : "Name", "Value" : "SecurityGroupHttpForServersSSH"}],  
                   "GroupDescription": "Allows Traffic to port 80 from anywhere in the world",
                   "SecurityGroupIngress" : [{
                     "IpProtocol" : "tcp",
@@ -70,6 +60,7 @@
 		"SecurityGroupHttpForLoadBalancer": {
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
+                  "Tags" : [ {"Key" : "Name", "Value" : "SecurityGroupHttpForLoadBalancer"}],
                   "GroupDescription": "Allows Traffic to port 80 from anywhere in the world",
                   "SecurityGroupIngress" : [{
                     "IpProtocol" : "tcp",
@@ -95,6 +86,18 @@
                     "id": "6239bb8b-60a2-4d44-bb92-10e1b3f9f5bd"
                 }
             }
-        }
+        },
+
+        /*"EIP1": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "InstanceId" : { "Ref" : "Instance1" }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a1f1a409-5753-4ddf-b209-f224b700ed67"
+                }
+            }
+        }*/
     }
 }
