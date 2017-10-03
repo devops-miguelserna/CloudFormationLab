@@ -165,7 +165,8 @@
                     "IpProtocol" : "tcp",
                     "FromPort" : "80",
                     "ToPort" : "80",
-                    "CidrIp" : "0.0.0.0/0"}]
+                    "CidrIp" : "0.0.0.0/0"}],
+                  "VpcId" : { "Ref" : "VPCTest" }
                   
              }
          },
@@ -174,12 +175,13 @@
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
                   "Tags" : [ {"Key" : "Name", "Value" : "SecurityGroupHttpForServersSSH"}],  
-                  "GroupDescription": "Allows Traffic to port 80 from anywhere in the world",
+                  "GroupDescription": "Allows Traffic to port 22 from anywhere in the world",
                   "SecurityGroupIngress" : [{
                     "IpProtocol" : "tcp",
                     "FromPort" : "22",
                     "ToPort" : "22",
-                    "CidrIp" : "0.0.0.0/0"}]
+                    "CidrIp" : "0.0.0.0/0"}],
+                  "VpcId" : { "Ref" : "VPCTest" }
                   
              }
          },
