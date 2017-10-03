@@ -68,7 +68,7 @@
                 "MapPublicIpOnLaunch" : true,
                 "Tags" : [ {"Key" : "Name", "Value" : "SubnetPublic1"}],
                 "AvailabilityZone" : "eu-central-1a",
-                "CidrBlock" : "10.1.0.0/24"
+                "CidrBlock" : "10.0.1.0/24"
             }
         },
 
@@ -111,7 +111,7 @@
                 "MapPublicIpOnLaunch" : true,
                 "AvailabilityZone" : "eu-central-1c",
                 "Tags" : [ {"Key" : "Name", "Value" : "SubnetPublic2"}],
-                "CidrBlock" : "10.2.0.0/24"
+                "CidrBlock" : "10.0.1.0/24"
             }
         },
 
@@ -152,7 +152,7 @@
                 "VpcId" : { "Ref" : "VPCTest"},
                 "AvailabilityZone" : "eu-central-1b",
                 "Tags" : [ {"Key" : "Name", "Value" : "SubnetPrivate"}],
-                "CidrBlock" : "10.3.0.0/24"
+                "CidrBlock" : "10.0.3.0/24"
             }
         },
 
