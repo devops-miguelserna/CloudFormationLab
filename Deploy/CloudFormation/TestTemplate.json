@@ -61,7 +61,7 @@
             }
         },
 
-        "SubnetPublic": {
+        "SubnetPublic1": {
             "Type" : "AWS::EC2::Subnet",
             "Properties": {
                 "VpcId" : { "Ref" : "VPCTest"},
@@ -71,7 +71,7 @@
             }
         },
 
-        "RouteTablePublic" : {
+        "RouteTablePublic1" : {
             "Type" : "AWS::EC2::RouteTable",
             "Properties" : {
                 "VpcId" : { "Ref" : "VPCTest" }
@@ -84,20 +84,62 @@
         },
 
 
-        "RoutePublic" : {
+        "RoutePublic1" : {
             "Type" : "AWS::EC2::Route",
             "Properties" : {
                 "DestinationCidrBlock" : "0.0.0.0/0",
                 "GatewayId" : { "Ref" : "IGatewayTest"},
-                "RouteTableId" : { "Ref" : "RouteTablePublic" } 
+                "RouteTableId" : { "Ref" : "RouteTablePublic1" } 
             }
         },
 
-        "PublicRouteAssociation" : {
+        "PublicRouteAssociation1" : {
             "Type" : "AWS::EC2::SubnetRouteTableAssociation",
             "Properties" : {
-                "RouteTableId" : { "Ref" : "RouteTablePublic" },
-                "SubnetId" : { "Ref" : "SubnetPublic"}
+                "RouteTableId" : { "Ref" : "RouteTablePublic1" },
+                "SubnetId" : { "Ref" : "SubnetPublic1"}
+            }
+
+        },
+
+
+        "SubnetPublic2": {
+            "Type" : "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId" : { "Ref" : "VPCTest"},
+                "MapPublicIpOnLaunch" : true,
+                "AvailabilityZone" : "eu-central-1c",
+                "CidrBlock" : "10.0.3.0/24"
+            }
+        },
+
+        "RouteTablePublic2" : {
+            "Type" : "AWS::EC2::RouteTable",
+            "Properties" : {
+                "VpcId" : { "Ref" : "VPCTest" }
+            },
+            "Metadata": {
+                        "AWS::CloudFormation::Designer": {
+                          "id": "b79d18c4-4ad2-41d3-9c54-5169313b4c4e"
+                        }
+            }
+        },
+
+
+        "RoutePublic2" : {
+            "Type" : "AWS::EC2::Route",
+            "Properties" : {
+                "DestinationCidrBlock" : "0.0.0.0/0",
+                "GatewayId" : { "Ref" : "IGatewayTest"},
+                "RouteTableId" : { "Ref" : "RouteTablePublic2" } 
+            }
+        },
+
+        "PublicRouteAssociation2" : {
+            "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties" : {
+                "RouteTableId" : { "Ref" : "RouteTablePublic2" },
+                "SubnetId" : { "Ref" : "SubnetPublic2"}
             }
 
         },
