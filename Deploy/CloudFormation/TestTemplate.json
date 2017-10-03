@@ -104,48 +104,6 @@
         },
 
 
-        "SubnetPublic2": {
-            "Type" : "AWS::EC2::Subnet",
-            "Properties": {
-                "VpcId" : { "Ref" : "VPCTest"},
-                "MapPublicIpOnLaunch" : true,
-                "AvailabilityZone" : "eu-central-1c",
-                "Tags" : [ {"Key" : "Name", "Value" : "SubnetPublic2"}],
-                "CidrBlock" : "10.0.1.0/24"
-            }
-        },
-
-        "RouteTablePublic2" : {
-            "Type" : "AWS::EC2::RouteTable",
-            "Properties" : {
-                "VpcId" : { "Ref" : "VPCTest" }
-            },
-            "Metadata": {
-                        "AWS::CloudFormation::Designer": {
-                          "id": "b79d18c4-4ad2-41d3-9c54-5169313b4c4e"
-                        }
-            }
-        },
-
-
-        "RoutePublic2" : {
-            "Type" : "AWS::EC2::Route",
-            "Properties" : {
-                "DestinationCidrBlock" : "0.0.0.0/0",
-                "GatewayId" : { "Ref" : "IGatewayTest"},
-                "RouteTableId" : { "Ref" : "RouteTablePublic2" } 
-            }
-        },
-
-        "PublicRouteAssociation2" : {
-            "Type" : "AWS::EC2::SubnetRouteTableAssociation",
-            "Properties" : {
-                "RouteTableId" : { "Ref" : "RouteTablePublic2" },
-                "SubnetId" : { "Ref" : "SubnetPublic2"}
-            }
-
-        },
-
         "SubnetPrivate": {
             "Type" : "AWS::EC2::Subnet",
             "Properties": {
@@ -242,7 +200,7 @@
                       }
                   ],
                   "SecurityGroups" : [ { "Ref": "SecurityGroupHttpForLoadBalancer"} ],
-                  "Subnets" : [ { "Ref" : "SubnetPublic1" }, { "Ref" : "SubnetPublic2" } ]           
+                  "Subnets" : [ { "Ref" : "SubnetPublic1" }, { "Ref" : "SubnetPrivate" } ]           
                    },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
