@@ -163,7 +163,7 @@
                     "ToPort" : "80",
                     "SourceSecurityGroupId" : {"Ref" : "SecurityGroupHttpForLoadBalancer"}
                  }],
-                  "VpcId": { "Ref": "MyVPC"}
+                  "VpcId": { "Ref": "VPCTest"}
                 }
         },
 	    "Instance1": {
