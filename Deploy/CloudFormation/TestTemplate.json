@@ -29,6 +29,40 @@
         }
     },
     "Resources": {
+        "VPCTest":{
+            "Type": "AWS::EC2::VPC",
+              "Properties": {
+                "CidrBlock": "10.0.0.0/16",
+                "EnableDnsHostnames" : true
+
+              },
+              "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                  "id": "ef179efb-2baa-49d9-9d75-3d3fc6f33d4c"
+                }
+              }
+          },
+
+        "IGatewayTest": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {},
+            "Metadata": {
+                "AWS:CloudFormation:Designer": {
+                    "id": "6ddcb8fa-c2b5-45c1-81ac-d9e14a63bb2d"
+                }
+            }
+        },
+
+        "IGWAttachment": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties":{
+                "InternetGatewayId" : { "Ref" : "IGatewayTest" },
+                "VpcId" : { "Ref" : "VPCTest" }
+            }
+        },
+
+
+
         "SecurityGroupHttpForServersHTTP": {
                 "Type": "AWS::EC2::SecurityGroup",
                 "Properties": {
@@ -83,7 +117,8 @@
                          "Protocol" : "HTTP"
                       }
                   ],
-                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"}, { "Ref" : "SecurityGroupHttpForServersHTTP" } ]
+                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"} ],
+                  "AvailabilityZones" : "eu-central-1a" 
 	    },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
