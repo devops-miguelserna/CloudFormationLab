@@ -118,8 +118,8 @@
                       }
                   ],
                   "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"} ],
-                  "AvailabilityZones" : "eu-central-1a" 
-	    },
+                  "AvailabilityZone" : "eu-central-1a"
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "36dbc337-203f-4bae-abc2-b9aa2592954d"
