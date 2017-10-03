@@ -148,14 +148,25 @@
                     "IpProtocol" : "tcp",
                     "FromPort" : "80",
                     "ToPort" : "80",
-                    "CidrIp" : "0.0.0.0/0"}]
-                  
+                    "CidrIp" : "0.0.0.0/0"}],
+                  "VpcId" : { "Ref" : "VPCTest"}
              }
          },
-	    
-	 
-		 
-        "Instance1": {
+
+        "SecurityGroupHttpFromLoadBalancing": {
+                "Type": "AWS::EC2::SecurityGroup",
+                "Properties": {
+                  "GroupDescription": "Allows Traffic to port 80 from LoadBalancing",
+                  "SecurityGroupIngress" : [{
+                    "IpProtocol" : "tcp",
+                    "FromPort" : "80",
+                    "ToPort" : "80",
+                    "SourceSecurityGroupId" : {"Ref" : "SecurityGroupHttpForLoadBalancer"}
+                 }],
+                  "VpcId": { "Ref": "MyVPC"}
+                }
+        },
+	    "Instance1": {
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "ImageId" : "ami-d3c022bc",
@@ -186,7 +197,7 @@
                          "Protocol" : "HTTP"
                       }
                   ],
-                  "SecurityGroups" : [ {"Ref": "SecurityGroupHttpForLoadBalancer"} ],
+                  "SecurityGroups" : [ { "Ref": "SecurityGroupHttpForLoadBalancer"} ],
                   "Subnets" : [ { "Ref" : "SubnetPublic" } ]           
                    },
             "Metadata": {
