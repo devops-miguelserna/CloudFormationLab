@@ -238,6 +238,7 @@
                          "Protocol" : "HTTP"
                       }
                   ],
+                  "Instances" : [ { "Ref" : "Instance1" } ],
                   "SecurityGroups" : [ { "Ref": "SecurityGroupHttpForLoadBalancer"} ],
                   "Subnets" : [ { "Ref" : "SubnetPublic1" }, { "Ref" : "SubnetPublic2" } ]           
                    },
